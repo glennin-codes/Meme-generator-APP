@@ -1,14 +1,15 @@
-
+import React from 'react';
 import Header from './components/header';
 import Footer from './components/footer'
-import Main from './components/main';
+import Meme from './components/main';
 import './App.css';
 
 export default function App() {
+      
     return (
           <div>
                    <Header />
-                   <Main />
+                   <Meme />
                    <Footer />
                  
          </div>

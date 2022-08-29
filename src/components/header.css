@@ -1,16 +1,15 @@
-.app--header{
+/* .app--header{
     display: flex;
     flex-direction: row;
     align-items: center;
     color: #FF5A5F; 
     padding: 20px 40px;
     background:linear-gradient(90deg,#672280 1.18%,#A626D3 100%);
-    margin-bottom: 120px;
     position: fixed;
     height: 80px;
     width: 100vw;
     top: 0;
-    margin-bottom: 90px;
+    
     box-shadow:0 0px 10px 10px black;
     font-weight: 500;
     font-size: 0.75rem;
@@ -45,4 +44,4 @@
  }
  .project--info{
     margin-right: 120px;
- }
+ } */
