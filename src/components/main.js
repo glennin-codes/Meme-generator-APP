@@ -1,37 +1,73 @@
-import  React from "react";
+import  React, { useState ,useEffect} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faFaceLaugh} from '@fortawesome/free-solid-svg-icons'
-import "./main.css"
-import { properties } from "./memesdata";
+import "./main.css";
+// import  {Properties} from './memesdata'
 export default function  Meme ()
 {
-    const [arrayPerson , setArrayPerson]=React.useState(["person 1","person 2"])
-    const [memeImg, setMemeImg]=React.useState("")
+ 
+        
+   
+       
+   
+    const [memesData,setMemesData]=useState(
+        {
+               topText:"",
+               bottomText:"",
+               randomImg:"https://i.imgflip.com/xh3me.jpg"
+
+    })
+     const [allMemes,setAllMemes]=useState([])
+     useEffect ( () => {
+        async function getMeme(){
+        const res=await fetch(' https://api.imgflip.com/get_memes')
+        const data = await res.json()
+        setAllMemes(data.data.memes)
+        }
+        getMeme()
+
+      
+     },[] )
+    //  console.log(allMemes);
     function getImageUrl(){
-        const memesArray=properties.data.memes
-        const randomNum=Math.floor(Math.random()*memesArray.length)
-        const Url = memesArray[randomNum].image
-        setMemeImg(Url)
-        
+
+        const randomNum=Math.floor(Math.random()*allMemes.length)
+        const Url = allMemes[randomNum].url
+        setMemesData((prevMemes=>
+            ({...prevMemes,randomImg:Url})
+        ))
     }
-       function addItem(){
-        setArrayPerson(prevArrayPerson=>[...prevArrayPerson,`person ${arrayPerson.length + 1}`])
+  
+       function handleChange (event){
+       
+            const{name,value}=event.target
+                setMemesData(prevData=>({
+                    ...prevData, [name]:value
+                }))
+            
        }
-       const  getItems= arrayPerson.map(person=><p key={person}>{person}</p>)
-    return(
-        <main className="app--wrapper"> 
-        <button className="add" onClick={addItem}>add item</button>
-                 {getItems}
-        
-            <div className="form">
+          function handleSubmit (event){
+            console.log(memesData);
+            event.preventDefault()
+          }
+     return(
+        <main className="app--wrapper">
+            <div className="main--contents">
+            <form className="form" onSubmit={handleSubmit} action='POST'>
                      <input type="text" 
                             className="form--inputs" 
-                            placeholder="top text"  
+                            placeholder="top text" 
+                            name='topText' 
+                            value={memesData.topText}
+                            onChange={handleChange}                         
                             
                      />
                      <input type="text" 
                             className="form--inputs"  
                             placeholder="bottom text"
+                            name='bottomText'
+                            value={memesData.bottomText}
+                            onChange={handleChange}                    
                      />
                    
                        <button  className="form--button" onClick={getImageUrl}>
@@ -42,11 +78,19 @@ export default function  Meme ()
                       
                       </button>
                   
-            </div>
-              <img  src={memeImg} alt="a meme " className="meme--Img"/>
-           
+            </form>
+                    
+                    <div className="action">
+                        <img  src={memesData.randomImg} alt="a meme " className="meme--Img"/>
+                            <div className="text--content">
+                                <h2 className='text--topText'>{memesData.topText}</h2>
+                                <h2 className='text--bottomText'>{memesData.bottomText}</h2>
+                            </div>
+                     </div>
+              </div>
+          
         </main>
     )
-
+ 
 }
  

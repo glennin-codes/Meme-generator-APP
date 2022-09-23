@@ -1,4 +1,4 @@
-/* .app--header{
+.app--header{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -7,7 +7,7 @@
     background:linear-gradient(90deg,#672280 1.18%,#A626D3 100%);
     position: fixed;
     height: 80px;
-    width: 100vw;
+    width: 100%;
     top: 0;
     
     box-shadow:0 0px 10px 10px black;
@@ -39,9 +39,31 @@
    color: red;
 }
  .app--header>.app--title{
-    margin-right: auto;
+    margin-right: 30px;
     
  }
  .project--info{
     margin-right: 120px;
- } */
+ }
+ @media (max-width:750px){
+   .app--header{
+      width: 100vw;
+      flex-direction:row;
+      flex-wrap: wrap;
+      height: 100px;
+      overflow: hidden;
+   }
+   .app--logo{
+      padding-left: 5px;
+      height: 40px;
+   }
+   .app--header>.app--title{
+      margin-right: 40px;
+   }
+   .project--info{
+      margin-left: 0;
+   }
+   .app--name{
+      margin-right: 90px;
+   }
+ }

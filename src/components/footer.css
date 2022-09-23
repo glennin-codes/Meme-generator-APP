@@ -5,6 +5,7 @@ footer{
     background-image:url('https://a0.muscache.com/airbnb/static/footer/background-317dd7c2cb678ddbdb0a983d511cb9a0.png');
     padding-bottom:40px;
     box-shadow:10 10px 10px 10px black;
+    width: 100vw;
 
   }
   h2,h3,h4{
@@ -65,7 +66,7 @@ footer{
     display:inline-block;
     margin-bottom:5px;
     font-size:0.9em;
-    letter-spacing:0.03em;
+    letter-spacing:0.03rem;
   }
   /* footer{
   } */
@@ -111,9 +112,16 @@ footer{
     }
     footer{
       text-align:center;
+      width: 100vw;
     }
     select{
       margin-left:auto;
       margin-right:auto;
+    }
+  }
+  @media (max-width:320px){
+    footer{
+      margin-right: 0;
+      width: 110vw;
     }
   }
